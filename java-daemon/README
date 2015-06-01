@@ -1,0 +1,12 @@
+
+    nohup java -server myApplication.jar > /log.txt - this is pretty straight forward. It will just put the application in the background. This will work but it's just not a very good way to do so.
+    Use a shell wrapper and the above OR daemon app. This approach is used by many open source projects and it's quite good for most of the scenarios. Additionally it can be included in init.d and required run level with regular start, stop and status commands. I can provide an example if needed.
+    Build your own daemon server using either Java Service Wrapper or Apache Jakarta Commons Daemon. Again - both are extremely popular, well tested and reliable. And available for both Linux and Windows! The one from Apache Commons is used by Tomcat server! Additionally there is Akuma.
+
+Personally I would go with solution 2 or 3 if you need to use this server in the future and/or distribute it to clients, end users, etc. nohup is good if you need to run something and have no time to develop more complex solution for the problem.
+
+Ad 2:
+
+The best scripts, used by many projects, can be found here: http://www.source-code.biz/snippets/java/7.htm
+
+For Debian/Ubuntu one can use a very simple script based on start-stop-daemon. If in doubt there is /etc/init.d/skeleton one can modify.
