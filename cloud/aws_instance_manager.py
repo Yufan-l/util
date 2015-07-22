@@ -3,7 +3,9 @@
 #[Credentials]
 #aws_access_key_id = <your_access_key_here>
 #aws_secret_access_key = <your_secret_key_here>
-#Region is something like us-west-1, us-west-2
+#Region should be one from [us-east-1, us-west-1,
+#us-west-2, us-gov-west-1, cn-north-1, ap-northeast-1,
+#ap-southeast-2, eu-west-1, eu-central-1, sa-east-1]
 
 import sys
 import boto.ec2

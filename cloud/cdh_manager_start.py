@@ -33,22 +33,20 @@ successMark=0
 try:
         for c in api.get_all_clusters():
                 print c.name  
-                cs=c.stop()
-                print "stoppping"
+                cs=c.start()
+                print "starting"
                 for i in xrange(50):
                         time.sleep(15)
                         for s in c.get_all_services():
-                                if not s.serviceState=="STOPPED":
+                            if not s.serviceState=="STARTED":
                                         successMark=0
                                         break
                                 successMark=1;
                         if successMark==1:
-                                print "all services in", c.name, "stopped"
+                                print "all services in", c.name, " are started"
                                 break
                 if successMark==0:
                         print "Ops, plz check ur cluster"
 
 except Exception as msg:
-        print "Manager server no respond: ",msg                                              
-
-
+        print "Manager server no respond: ",msg             
