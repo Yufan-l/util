@@ -35,7 +35,7 @@ try:
                 print c.name  
                 cs=c.start()
                 print "starting"
-                for i in xrange(50):
+                for i in xrange(80):
                         time.sleep(15)
                         for s in c.get_all_services():
                                 if not s.serviceState=="STARTED":
