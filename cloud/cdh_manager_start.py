@@ -38,7 +38,7 @@ try:
                 for i in xrange(50):
                         time.sleep(15)
                         for s in c.get_all_services():
-                            if not s.serviceState=="STARTED":
+                                if not s.serviceState=="STARTED":
                                         successMark=0
                                         break
                                 successMark=1;
