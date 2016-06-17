@@ -29,6 +29,7 @@ echo $zk >  /etc/mesos/zk
 echo 'docker,mesos' > /etc/mesos-slave/containerizers
 echo $ip > /etc/mesos-slave/hostname
 echo $ip > /etc/mesos-slave/ip
+echo '10mins' > /etc/mesos-slave/executor_registration_timeout
 
 sudo service mesos-master stop
 sudo sh -c "echo manual > /etc/init/mesos-master.override"
