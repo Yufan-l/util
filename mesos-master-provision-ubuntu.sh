@@ -12,7 +12,7 @@ if [ -z "$ip" ];then
  exit
 fi
 
-sudo apt-get-repository -y ppa:openjdk-r/ppa
+sudo apt-add-repository -y ppa:openjdk-r/ppa
 sudo apt-get -y update
 sudo apt-get -y install openjdk-8-jdk
 
