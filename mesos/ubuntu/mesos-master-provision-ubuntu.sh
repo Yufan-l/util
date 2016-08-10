@@ -8,7 +8,7 @@ if [ -z "$zk" ];then
 fi
 
 if [ -z "$ip" ];then
- echo "please provide slave ip"
+ echo "please provide mesos ip"
  exit
 fi
 
@@ -25,15 +25,12 @@ sudo apt-get -y update
 
 sudo apt-get -y install mesos marathon
 
-echo $zk > /etc/mesos/zk
+echo zk://$zk:2181/mesos > /etc/mesos/zk
 echo $ip > /etc/mesos-master/hostname
 echo $ip > /etc/mesos-master/ip
-echo 'docker,mesos' > /etc/mesos-slave/containerizers
-echo $ip > /etc/mesos-slave/hostname
-echo $ip > /etc/mesos-slave/ip
-echo '10mins' > /etc/mesos-slave/executor_registration_timeout
 
+sudo service mesos-slave stop
+sudo sh -c "echo manual > /etc/init/mesos-slave.override"
 
 sudo service mesos-master restart
-sudo service mesos-slave restart
 sudo service marathon restart

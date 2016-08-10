@@ -23,14 +23,18 @@ CODENAME=$(lsb_release -cs)
 echo "deb http://repos.mesosphere.com/${DISTRO} ${CODENAME} main" | sudo tee /etc/apt/sources.list.d/mesosphere.list
 sudo apt-get -y update
 
-sudo apt-get -y install mesos marathon
+sudo apt-get -y install mesos
 
-echo $zk >  /etc/mesos/zk
-echo $ip > /etc/mesos-master/hostname
-echo $ip > /etc/mesos-master/ip
+sudo service zookeeper stop
+sudo sh -c "echo manual > /etc/init/zookeeper.override"
 
-sudo service mesos-slave stop
-sudo sh -c "echo manual > /etc/init/mesos-slave.override"
+echo zk://$zk:2181/mesos > /etc/mesos/zk
+echo 'docker,mesos' > /etc/mesos-slave/containerizers
+echo $ip > /etc/mesos-slave/hostname
+echo $ip > /etc/mesos-slave/ip
+echo '10mins' > /etc/mesos-slave/executor_registration_timeout
 
-sudo service mesos-master restart
-sudo service marathon restart
+sudo service mesos-master stop
+sudo sh -c "echo manual > /etc/init/mesos-master.override"
+
+sudo service mesos-slave restart

@@ -34,7 +34,7 @@ dpkg -i marathon_1.1.1-1.0.472.ubuntu1404_amd64.deb
 
 
 
-echo $zk > /etc/mesos/zk
+echo zk://$zk:2181/mesos > /etc/mesos/zk
 echo $ip > /etc/mesos-master/hostname
 echo $ip > /etc/mesos-master/ip
 echo 'docker,mesos' > /etc/mesos-slave/containerizers
