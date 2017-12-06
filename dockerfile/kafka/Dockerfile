@@ -4,7 +4,7 @@ FROM java:openjdk-8-jre
 
 ENV DEBIAN_FRONTEND noninteractive
 ENV SCALA_VERSION 2.10
-ENV KAFKA_VERSION 0.10.1.0
+ENV KAFKA_VERSION 0.10.2.1
 ENV KAFKA_HOME /opt/kafka_"$SCALA_VERSION"-"$KAFKA_VERSION"
 
 # Install Kafka, Zookeeper and other needed things
@@ -18,7 +18,7 @@ RUN apt-get update && \
 
 ADD scripts/start-kafka.sh /usr/bin/start-kafka.sh
 ADD scripts/create-topics.sh /usr/bin/create-topics.sh
-
+ADD conf/server.properties $KAFKA_HOME/config/
 # Supervisor config
 ADD supervisor/kafka.conf supervisor/zookeeper.conf supervisor/create-topics.conf /etc/supervisor/conf.d/
 
