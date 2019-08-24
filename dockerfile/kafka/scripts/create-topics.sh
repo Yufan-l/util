@@ -27,6 +27,6 @@ if [[ -n $KAFKA_CREATE_TOPICS ]]; then
     IFS=','; for topicToCreate in $KAFKA_CREATE_TOPICS; do
         echo "creating topics: $topicToCreate" 
         IFS=':' read -a topicConfig <<< "$topicToCreate"
-        $KAFKA_HOME/bin/kafka-topics.sh --create --zookeeper  localhost:2181 --replication-factor ${topicConfig[1]} --partition ${topicConfig[2]} --topic "${topicConfig[0]}"
+        $KAFKA_HOME/bin/kafka-topics.sh --create --zookeeper  localhost:2181 --replication-factor ${topicConfig[1]} --partitions ${topicConfig[2]} --topic "${topicConfig[0]}"
     done
 fi
