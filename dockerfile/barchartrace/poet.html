@@ -1,0 +1,61 @@
+<!DOCTYPE html charset="utf-8">
+<meta charset="utf-8">
+<html>
+<body>
+
+<ul id="poet">
+    <li>李白</li>
+    <li>杜甫</li>
+    <li>白居易</li>
+    <li>李清照</li>
+</ul>
+
+<p>Match Result</p>
+
+<ul id="result">
+
+</ul>
+
+<input type="textarea" id="score" name="score" value="bob_85 alice_90 charlie_60"
+       size="100">
+
+<button onclick="myFunction()">Move</button>
+
+<script>
+function myFunction() {
+
+  var namesObject = document.getElementById("poet");
+  var names = namesObject.getElementsByTagName("li");
+
+
+  var score = document.getElementById("score").value
+  if(score === "")
+    return;
+  const myArray = score.split(" ");
+  let sortable = [];
+
+  for(let i = 0; i < myArray.length; i++){
+     const pair = myArray[i].split("_");
+     sortable.push([pair[0],pair[1]]);
+
+  }
+  sortable.sort(function(a, b) {
+     return a[1] - b[1];
+   });
+
+   for(let i = 0; i < sortable.length; i++){
+     var newNode = document.createElement('div');
+     newNode.innerHTML = sortable[i][0] + ":" + names[i].innerHTML ;
+     document.getElementById("result").appendChild(newNode);
+   }
+
+   for(let i = 0; i < sortable.length; i++){
+     namesObject.removeChild(namesObject.firstElementChild);
+   }
+
+   document.getElementById("score").value =""
+}
+</script>
+
+</body>
+</html>
