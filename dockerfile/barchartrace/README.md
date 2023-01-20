@@ -8,6 +8,8 @@ Dates should be 'YYYY-MM-DD'
 
 Option 1 : one row per date (ordered) and one column per contender.
 
+
+
 Date | Name1 | Name2
 --- | --- | ---
 2018-01-01 | 1 | 1
